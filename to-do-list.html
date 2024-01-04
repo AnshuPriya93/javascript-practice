@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>To do list</title>
+    <style>
+        .cls-add-btn,
+        .delete-todo-button {
+            color: white;
+            border: none;
+            font-size: 15px;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: green;
+
+        }
+
+        .delete-todo-button {
+            background-color: darkred;
+        }
+
+        .cls-input,
+        .cls-todo-due-date {
+            font-size: 15px;
+            padding: 6px;
+        }
+
+        .cl-div,
+        .todo-row {
+            display: grid;
+            grid-template-columns: 200px 150px 100px;
+            align-items: center;
+            column-gap: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <p>Todo List Practice 1</p>
+    <input class="js-input-value" placeholder="Toda Name">
+    <button onclick="onAdd()">Add</button>
+
+    <p>Todo List Practice 2</p>
+    <input class="js-input-value2" placeholder="Toda Name">
+    <button onclick="onAdd2()">Add</button>
+    <div class="js-text-value"></div>
+
+    <p>To Do List</p>
+
+    <div class="todo-row">
+        <input placeholder="Todo Name" class="js-todo-name cls-input">
+        <input type="date" class="cls-todo-due-date js-todo-due-date">
+        <button class="cls-add-btn" onclick="addTodo()">Add</button>
+    </div>
+    <div class="js-text-valueMain"></div>
+
+
+    <script>
+        let todoList = [];
+        let todoList2 = [];
+        function onAdd() {
+            let inpValue = document.querySelector('.js-input-value')
+            const val = inpValue.value
+            todoList.push(val);
+            console.log(todoList);
+            inpValue.value = '';
+        }
+
+        function onAdd2() {
+            let inpValue = document.querySelector('.js-input-value2')
+            const val = inpValue.value
+            todoList2.push(val);
+            inpValue.value = '';
+            renderTodoSimple();
+        }
+
+        function renderTodoSimple() {
+            let todoHTML = '';
+            
+            todoList2.forEach(todo, index => {
+                const html = `<p>${todo}</p>`;              
+                todoHTML += html;
+            });
+            // for (let i = 0; i < todoList2.length; i++) {
+            //     let todo = todoList2[i];
+            //     const html = `<p>${todo}</p>`;
+            //     // todoList2 = todoList2 + html;
+            //     todoHTML += html;
+            // }
+            console.log(todoHTML)
+            document.querySelector('.js-text-value').innerHTML = todoHTML;
+        }
+
+        let todoListMain = [];
+
+        function addTodo() {
+            const todoNameElem = document.querySelector('.js-todo-name');
+            const name = todoNameElem.value;
+
+            const todoDateElem = document.querySelector('.js-todo-due-date');
+            const date = todoDateElem.value;
+            todoListMain.push({
+                name,
+                date
+            });
+            renderTodoList();
+            todoNameElem.value = '';
+            todoDateElem.value = '';
+
+
+        }
+        function renderTodoList() {
+            let todoMainHtml = ''
+            for (let i = 0; i < todoListMain.length; i++) {
+                // const todo =  todoListMain[i];
+                const name = todoListMain[i].name;
+                const date = todoListMain[i].date;
+                todoMainHtml += `<div class="todo-row">
+                    <div>${name}</div>
+                    <div>${date}</div>
+                    <button class="delete-todo-button" onclick="onDelete(${i})">Delete</button>
+                    </div>`;
+
+            }
+            document.querySelector('.js-text-valueMain').innerHTML = todoMainHtml;
+
+        }
+        function onDelete(index) {
+            todoListMain.splice(index, 1);
+            renderTodoList()
+        }
+
+    </script>
+</body>
+
+</html>

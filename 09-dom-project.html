@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>  
+    <title>Dom Projects </title>
+    <style>
+        .subcribe-button {
+           padding: 10px 15px;
+           background-color: black;
+           color: white;
+           border-radius: 50px;
+           cursor: pointer;
+           border: none;
+           font-weight: bold;
+        }
+        .cl-is-subscribed {
+            background-color: rgb(208, 208, 208);
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <p>Youtube Subscribe Button</p>
+    <button onclick="subscribe()" class="js-subscribe-button subcribe-button">Subscribe</button>
+    <p>Amazon Shipping Calculator</p>
+    <p>Order under $40 = $+10 shipping. </p>
+    <p>Order over $40 = FREE shipping. </p>   
+    <input class="js-input" placeholder="cost of order" onkeydown="handleKeyFunction(event)">
+    <button onclick="totalCost()">Calculate</button>
+    <p class="js-update-price"></p>
+
+
+    <script>
+
+function handleKeyFunction(event) {
+    if(event.key === 'Enter'){
+        totalCost();
+    }
+}
+
+        function subscribe() {
+            let buttonElement = document.querySelector('.js-subscribe-button');
+
+            if (buttonElement.innerText === 'Subscribe') {
+                buttonElement.innerText = 'Subscribed';
+                buttonElement.classList.add('cl-is-subscribed')
+            } else {
+                buttonElement.innerText = 'Subscribe';
+                buttonElement.classList.remove('cl-is-subscribed')
+            }
+        }
+        function totalCost() {
+            const inputElm = document.querySelector('.js-input');
+            debugger
+            let cost = Number(inputElm.value);
+            
+            //  console.log(cost)
+
+            if (cost < 40) {
+                cost = cost + 10;              
+                document.querySelector('.js-update-price').innerHTML= `$${cost}`;                
+            }          
+            else {
+                document.querySelector('.js-update-price').innerHTML=  `$${cost}`;
+            }
+
+        }
+
+
+
+
+
+    </script>
+</body>
+
+</html>

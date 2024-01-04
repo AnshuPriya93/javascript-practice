@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Rock Paper scissors</title>
+   <link rel="stylesheet" href="styles/06-rock-paper.css">
+</head>
+
+<body>
+  
+    <div class="container">
+        <div><p class="cl-title">Rock Paper Scissors</p></div>
+    <div class="inner-div">
+    <button class="move-button" onclick="playGame('rock')">
+        <img class="move-icon" src="image/rock-emoji.png"></button>
+    <button class="move-button" onclick="playGame('paper')">
+        <img class="move-icon" src="image/paper-emoji.png"></button>
+    <button class="move-button" onclick="playGame('scissors')">
+        <img class="move-icon" src="image/scissors-emoji.png"></button>
+    </div>
+    <div class="inner-div">
+
+    <div><p class="js-result cl-result"></p></div>
+    <div><p class="js-picks"></p></div>
+    <div><p class="js-score cls-score"></p></div>
+    </div>
+    <div>
+    <button onclick="
+    scoreBoard.win =0;
+    scoreBoard.lose=0;
+    scoreBoard.tie=0;
+    localStorage.removeItem('scoreBoard');    
+    updateScoreboardElm()" class="js-resetbutton cls-resetbutton">Restet Button</button>
+    </div>
+</div>
+    <script src="scripts/06-rock-paper.js"></script>
+</body>
+
+</html>
